@@ -23,11 +23,15 @@ end
 
 group :development do
   gem 'rspec-rails', '2.5.0'
+  gem 'autotest'
+  gem 'autotest-fsevent'
+  gem 'autotest-growl'
 end
 
 group :test do
   gem 'rspec', '2.5.0'
   gem 'webrat', '0.7.1'
+  gem 'spork','0.9.2'
 end
 
 # To use ActiveModel has_secure_password
