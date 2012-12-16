@@ -41,4 +41,16 @@ render_views
         response.should have_selector("title",:content => " | A propos")
       end
    end
+   
+   describe "GET 'help'" do
+      it "Devrait reussir - help" do
+        get 'help'
+        response.should be_success
+      end
+     
+      it "doit avoir le bon titre" do
+        get 'help'
+        response.should have_selector("title",:content => " | Aide")
+      end
+   end
 end
