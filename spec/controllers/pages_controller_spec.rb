@@ -13,7 +13,7 @@ render_views
     
       it "doit avoir le bon titre" do
         get 'home'
-        response.should have_selector("title", :content=>" | Accueil")
+        response.should have_selector("title", :content=>"Accueil")
       end
    
   end
@@ -26,7 +26,7 @@ render_views
      
      it "doit avoir le bon titre" do
         get 'contact'
-        response.should have_selector("title",:content => " | Contact")
+        response.should have_selector("title",:content => "Contact")
       end
   end
   
@@ -38,7 +38,7 @@ render_views
      
       it "doit avoir le bon titre" do
         get 'about'
-        response.should have_selector("title",:content => " | A propos")
+        response.should have_selector("title",:content => "A propos")
       end
    end
    
@@ -50,7 +50,7 @@ render_views
      
       it "doit avoir le bon titre" do
         get 'help'
-        response.should have_selector("title",:content => " | Aide")
+        response.should have_selector("title",:content => "Aide")
       end
    end
 end
