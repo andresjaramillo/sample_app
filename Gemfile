@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.9'
-
+#gem 'rails', '3.2.9'
+gem 'rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -21,18 +21,23 @@ group :assets do
 end
 
 group :development do
-  gem 'rspec-rails', '2.5.0'
+  gem 'rspec-rails'
+  gem 'annotate'
   gem 'autotest'
   gem 'autotest-fsevent'
   gem 'autotest-growl'
 end
 
 group :test do
-  
-  gem 'rspec', '2.5.0'
-  #gem 'webrat', '0.7.1'
+  gem 'rspec-rails'
+  gem 'rspec'
   gem 'webrat', '0.7.3'
   gem 'spork'
+  gem 'magic_encoding'
+  gem 'annotate'
+  gem 'autotest'
+  gem 'autotest-fsevent'
+  gem 'autotest-growl'
 end
 
 # To use ActiveModel has_secure_password
