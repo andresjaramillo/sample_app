@@ -14,10 +14,14 @@ require 'spec_helper'
 describe User do
     
   before (:each) do
-    @attr = { :nom => "example", :email => "user@exemple.com" }
+    @attr = { :nom => "example", 
+              :email => "user@exemple.com",
+              :password => "foobar",
+              :password_confirmation => "foobar" 
+             }
   end
   
-  it "devrait creer une nouvelle instance" do
+  it "devrait creer une nouvelle instance des attributs valides" do
     User.create!(@attr)
   end
   #Pour que ce test marque nous avons décommenté user.db le validate
@@ -58,4 +62,57 @@ describe User do
     user_with_duplicate_email.should_not be_valid
   end
   
-end
+  describe "password validations" do
+
+    it "devrait exiger un mot de passe" do
+      User.new(@attr.merge(:password => "", :password_confirmation => "")).
+        should_not be_valid
+    end
+
+    it "devrait exiger une confirmation du mot de passe qui correspond" do
+      User.new(@attr.merge(:password_confirmation => "invalid")).
+        should_not be_valid
+    end
+
+    it "devrait rejeter les mots de passe (trop) courts" do
+      short = "a" * 5
+      hash = @attr.merge(:password => short, :password_confirmation => short)
+      User.new(hash).should_not be_valid
+    end
+
+    it "devrait rejeter les (trop) longs mots de passe" do
+      long = "a" * 41
+      hash = @attr.merge(:password => long, :password_confirmation => long)
+      User.new(hash).should_not be_valid
+    end
+  end
+  
+  describe "password encryption" do
+
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+
+    it "devrait avoir un attribut  mot de passe crypte" do
+      @user.should respond_to(:encrypted_password)
+    end
+    
+    it "devrait definir le mot de passe encrypte" do
+      @user.encrypted_password.should_not be_blank
+    end
+    
+    describe "Methode has_password?" do
+     
+      it "doit retourner true si les mots de passe coincident" do
+        @user.has_password?(@attr[:password]).should be_true
+      end
+      
+      it "doit retourner false si les mots de passe divergent" do
+        @user.has_password?('invalide').should be_false
+      end
+      
+    end#password encryption
+    
+  end#password validations
+  
+end#describe user
