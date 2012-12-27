@@ -49,6 +49,26 @@ describe UsersController do
         response.should have_selector("title", :content=>"Inscription")
     end
     
+    it "devrait avoir un champ nom" do
+      get :new
+      response.should have_selector("input[name='user[nom]'][type='text']")
+    end
+    
+    it "devrait avoir un champ email" do
+      get :new
+      response.should have_selector("input[name='user[email]'][type='text']")
+    end
+    
+    it "devrait avoir un champ password" do
+      get :new
+      response.should have_selector("input[name='user[password]'][type='password']")
+    end
+    
+    it "devrait avoir un champ password" do
+      get :new
+      response.should have_selector("input[name='user[password_confirmation]'][type='password']")
+    end
+    
   end
   
   describe "POST 'Create'" do
