@@ -40,17 +40,64 @@ describe UsersController do
   describe "GET 'new'" do
     
     it "should be successful" do
-      get 'new'
+      get :new
       response.should be_success
     end
     
-    it "doit avoir le bon titre 12 '/new'" do
-        get 'new'
+    it "doit avoir le bon titre" do
+        get :new
         response.should have_selector("title", :content=>"Inscription")
     end
     
   end
   
-  
+  describe "POST 'Create'" do
+    
+    describe "Echec" do
+      
+      before(:each) do
+        @attr = {:nom => "", :email => "", :password => "",
+                  :password_confirmation => ""}
+      end
+      
+      it "ne devrait pas creer l'utilisateur"do
+        lambda do
+          post :create, :user => @attr
+        end.should_not change(User, :count)
+      end
+      
+      it "devrait avoir le bon titre" do
+        post :create, :user => @attr
+        response.should have_selector("title", :content => "Inscription")
+      end
+
+      it "devrait rendre la page 'new'" do
+        post :create, :user => @attr
+        response.should render_template('new')
+      end
+      
+    end#describe "Echec"
+    
+    describe "Succes" do
+      
+      before(:each) do
+        @attr = {:nom => "Andres", :email => "andres.jaramillo.o@gmail.com", :password => "elcomercio111",
+                  :password_confirmation => "elcomercio111"}
+      end
+      
+      it "devrait creer l'utilisateur" do
+        lambda do
+          post :create, :user => @attr
+        end.should change(User, :count).by(1)
+      end
+      
+       it "devrait rediriger vers la page d'affichage de l'utilisateur" do
+        post :create, :user => @attr
+        response.should redirect_to(user_path(assigns(:user)))
+      end   
+      
+    end #describe "Succes"
+    
+  end#describe "Post 'Create'"
 
 end

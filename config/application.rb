@@ -8,6 +8,11 @@ require "active_resource/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
+#Ajouté au point 8.13
+require "rails/all"
+#Ajouté au point 8.13
+Bundler.require(:default, Rails.env) if defined?(Bundler)
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
@@ -64,5 +69,8 @@ module SampleApp
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # au pont 8.13 Configure sensitive parameters which will be filtered from the log file.
+    config.filter_parameters += [:password]
   end
 end

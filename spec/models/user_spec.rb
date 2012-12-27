@@ -36,7 +36,7 @@ describe User do
   end
   
   it "devrait regeter les noms trop long 10 caracteres" do
-    long_nom = "andresandresandres"
+    long_nom = "andres"*10
     long_nom_user = User.new(@attr.merge(:nom => long_nom))
     long_nom_user.should_not be_valid
   end
