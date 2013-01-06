@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//app/helpers/sessions_helper.rb=UTF-8
+encoding//app/views/layouts/_header.html.erb=UTF-8
 encoding//spec/models/user_spec.rb=UTF-8
+encoding//spec/requests/layout_links_spec.rb=UTF-8
+encoding//spec/requests/users_spec.rb=UTF-8

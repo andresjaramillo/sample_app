@@ -101,8 +101,8 @@ describe UsersController do
     describe "Succes" do
       
       before(:each) do
-        @attr = {:nom => "Andres", :email => "andres.jaramillo.o@gmail.com", :password => "elcomercio111",
-                  :password_confirmation => "elcomercio111"}
+        @attr = {:nom => "New User", :email => "user@example.com", :password => "foobar",
+                  :password_confirmation => "foobar"}
       end
       
       it "devrait creer l'utilisateur" do
@@ -114,7 +114,17 @@ describe UsersController do
        it "devrait rediriger vers la page d'affichage de l'utilisateur" do
         post :create, :user => @attr
         response.should redirect_to(user_path(assigns(:user)))
-      end   
+      end  
+      
+       it "devrait avoir un message de bienvenue" do
+          post :create, :user => @attr
+          flash[:success].should =~ /Bienvenue/i
+        end
+       
+       it "devrait identifier l'utilisateur" do
+        post :create, :user => @attr
+        controller.should be_signed_in
+      end
       
     end #describe "Succes"
     
