@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'erb'
 module Blueprint
   # Generates a custom grid file, using ERB to evaluate custom settings

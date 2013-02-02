@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Bundler.require(:test)
 
 require "aruba/cucumber"

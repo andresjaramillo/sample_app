@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 When /^I generate Blueprint stylesheets$/ do
   When %{I run `#{blueprint_command}`}
 end
