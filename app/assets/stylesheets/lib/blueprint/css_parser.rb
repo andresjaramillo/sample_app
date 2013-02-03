@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Blueprint
   # Strips out most whitespace and can return a hash or string of parsed data
   class CSSParser

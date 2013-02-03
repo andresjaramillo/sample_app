@@ -10,6 +10,9 @@ gem 'sqlite3'
 gem 'gravatar_image_tag','1.1.3'
 # Gems used only for assets and not required
 # in production environments by default.
+
+gem 'will_paginate','3.0.pre4'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -26,6 +29,7 @@ group :development do
   gem 'autotest'
   gem 'autotest-fsevent'
   gem 'autotest-growl'
+  gem 'faker','0.3.1'
 end
 
 group :test do

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Blueprint
   # parses a hash of key/value pairs, key being output CSS selectors, value
   # being a list of CSS selectors to draw from

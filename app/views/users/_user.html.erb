@@ -1,0 +1,11 @@
+<li>
+  	<%= gravatar_for user, :size => 30 %>
+  	<%= link_to user.nom, user %>
+	<% if current_user.admin? %>
+<!--
+	Solution pour le problème de rediredirection directement sur le show!
+	voir application.html
+	#http://stackoverflow.com/questions/8726534/rails-3-1-link-to-not-showing-confirmation-or-destroying-properly-->
+  		<%= link_to " supprimer", user, :method => :delete,:confirm => "Etes-vous certain?", :title => "Supprimer #{user.nom}" %>
+	<% end %>
+</li>

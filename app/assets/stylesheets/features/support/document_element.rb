@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DocumentElement
   class Dimension  < Struct.new(:top, :right, :bottom, :left);       end
   class Background < Struct.new(:color, :image, :repeat, :position); end

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class String
   # see if string has any content
   def blank?; self.length.zero?; end

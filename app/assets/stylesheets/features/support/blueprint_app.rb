@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class BlueprintApp
   def self.current_response=(resp)
     @@current_response = resp

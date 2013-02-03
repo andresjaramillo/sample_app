@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Blueprint
   class GridBuilder
     attr_reader :column_width, :gutter_width, :output_path, :able_to_generate

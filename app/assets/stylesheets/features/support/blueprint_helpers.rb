@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "./lib/blueprint/blueprint"
 
 module BlueprintHelpers

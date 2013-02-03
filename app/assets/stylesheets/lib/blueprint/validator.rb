@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Blueprint
   # Validates generated CSS against the W3 using Java
   class Validator
