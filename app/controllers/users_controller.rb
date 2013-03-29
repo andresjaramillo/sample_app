@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:index, :edit, :update]
-  before_filter :currect_user, :only => [:edit, :update]
+  before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
+  before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user,   :only => :destroy
   
   def index
@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   
    def show
     @user = User.find_by_id(params[:id])
+    @microposts = @user.microposts.paginate(:page => params[:page])
     @titre = @user.nom
   end
   
@@ -50,22 +51,24 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "Utilisateur supprimé"
+    @user = User.find_by_id(params[:id])
+    if !current_user?(@user)
+      @user.destroy
+      flash[:success] = "Utilisateur supprimé" + @user.nom
+    else
+      flash[:error] = "L'administrateur "+@user.nom+" ne peux être supprimé."
+    end
+    
     redirect_to users_path
   end
   
- private
+private
   
   def admin_user
     redirect_to(root_path) unless current_user.admin?
   end
   
-  def authenticate 
-    dany_access unless signed_in?
-  end
-  
-  def currect_user
+  def correct_user
     @user = User.find(params[:id])
     redirect_to(root_path) unless current_user?(@user)
   end

@@ -13,6 +13,8 @@
 class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :email, :nom, :password, :password_confirmation
+  
+  has_many :microposts, :dependent => :destroy
   #créer des expréssions régulières http://www.rubular.com/
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
@@ -41,6 +43,10 @@ class User < ActiveRecord::Base
     user = find_by_id(id)
     return nil  if user.nil?
     return user if user.salt == cookie_salt
+  end
+  
+  def feed
+    Micropost.where("user_id = ?", id)
   end
   
   private

@@ -22,6 +22,10 @@ module SessionsHelper
     self.current_user = nil
   end
   
+  def authenticate 
+    dany_access unless signed_in?
+  end
+  
   def dany_access
     store_location
     redirect_to signin_path, :notice => "Merci de vous identifier pour rejoindre cette page."

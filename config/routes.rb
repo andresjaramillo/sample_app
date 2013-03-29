@@ -3,6 +3,7 @@ SampleApp::Application.routes.draw do
   #get "users/new"
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :microposts, :only => [:create, :destroy]
   #get "pages/home", :to => 'pages#home'
   #get "pages/contact", :to => 'pages#contact'
   #get "pages/about", :to => 'pages#about'

@@ -5,7 +5,13 @@ namespace :db do
   desc "Peupler la base de données"
   task :populate => :environment do
     Rake::Task['db:reset'].invoke
-    administrateur = User.create!(:nom => "Utilisateur exemple",
+    make_users
+    make_microposts
+  end
+end
+
+def make_users
+  administrateur = User.create!(:nom => "Utilisateur exemple",
                       :email => "example@railstutorial.org",
                       :password => "foobar",
                       :password_confirmation => "foobar")
@@ -18,6 +24,15 @@ namespace :db do
                    :email => email,
                    :password => password,
                    :password_confirmation => password)
+                   
+   end
+end
+    
+def make_microposts   
+  User.all(:limit => 6).each do |user|
+    45.times do
+      user.microposts.create!(:content => Faker::Lorem.sentence(5))    
     end
   end
 end
+

@@ -11,7 +11,7 @@ gem 'gravatar_image_tag','1.1.3'
 # Gems used only for assets and not required
 # in production environments by default.
 
-gem 'will_paginate','3.0.pre4'
+gem 'will_paginate','3.0.3'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
